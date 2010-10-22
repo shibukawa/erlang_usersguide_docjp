@@ -26,7 +26,7 @@
    specifications. The child processes are started in the order specified by 
    this list, and terminated in the reversed order.
 
-子プロセスの起動とモニタリングは、子供の定義のリストを渡すことによって設定されます。子プロセスの起動はこのリストで定義された順番で行われ、終了時はこれとは逆の順序で行われます。
+子プロセスの起動とモニタリングは、 :ref:`child_spec` のリストを渡すことによって設定されます。子プロセスの起動はこのリストで定義された順番で行われ、終了時はこれとは逆の順序で行われます。
 
 .. 5.2 Example
 
@@ -36,7 +36,7 @@
 .. The callback module for a supervisor starting the server from the gen_server 
    chapter could look like this:
 
-gen_serverの章にあった、サーバを起動するスーパバイザのためのコールバックモジュールのコードは以下のようなコードでした:
+:ref:`gen_server` の章にあった、サーバを起動するスーパバイザのためのコールバックモジュールのコードは以下のようなコードでした:
 
 .. code-block:: erlang
 
@@ -56,17 +56,19 @@ gen_serverの章にあった、サーバを起動するスーパバイザのた�
 
 .. one_for_one is the restart strategy.
 
-``one_for_one`` は再起動戦略です。
+``one_for_one`` は :ref:`restart` です。
 
 .. 1 and 60 defines the maximum restart frequency.
 
-1と60の数値は、再起動の頻度の最大値を定義します。
+1と60の数値は、 :ref:`restart_requency` を定義します。
 
 .. The tuple {ch3, ...} is a child specification.
 
-タプルの ``{ch3, ...}`` は子プロセスの定義です。
+タプルの ``{ch3, ...}`` は :ref:`child_spec` です。
 
 .. 5.3 Restart Strategy
+
+.. _restart:
 
 再起動戦略
 ==========
@@ -78,7 +80,7 @@ one_for_one
 
 もし一つの子プロセスが終了したら、そのプロセスだけを再起動します。
 
-.. image:: sup4
+.. image:: restart1.png
 
 .. One_For_One Supervision
 
@@ -92,7 +94,7 @@ one_for_all
 
 もし一つ子プロセスが終了したら、他のすべてのこプロセスも終了させられ、最初に終了したものも含めて、すべての子プロセスが再起動します。
 
-.. image:: sup5
+.. image:: restart2.png
 
 .. One_For_All Supervision
 
@@ -109,6 +111,8 @@ rest_for_one
 子プロセスの一つが終了したら、子プロセスの残り、例えば、起動順序が終了したプロセスの次だった子プロセスなどが終了させられます。その後、子プロセスと、残りの子プロセスが再起動します。
 
 .. Maximum Restart Frequency
+
+.. _restart_requency:
 
 再起動頻度の最大値
 ==================
@@ -142,6 +146,8 @@ MaxT秒の間に、MaxRの数値以上に再起動が発生した場合に、ス
 この再起動メカニズムが提供されている意図は、同じ理由でプロセスが異常終了しているという状況で、全体をもう一度再起動する、という用途で使われることを想定しています。
 
 .. 5.5 Child Specification
+
+.. _child_spec:
 
 子プロセスの仕様の設定
 ======================
@@ -199,6 +205,8 @@ This is the type definition for a child specification:
 
 .. * Shutdown defines how a child process should be terminated.
 
+.. _shutdown_strategy:
+
 * ``Shutdown`` では、子プロセスを終了すべきときに、どのように行うかを設定します。
 
    .. * brutal_kill means the child process is unconditionally terminated using 
@@ -231,10 +239,12 @@ This is the type definition for a child specification:
 
 * ``Module`` には、要素が一つのリストを設定します。この要素には、コールバックモジュールの名前を設定します。もし、子プロセスがスーパバイザであれば、 ``gen_server`` か、 ``gen_fsm`` になります。もし、子プロセスが ``gen_event`` であれば、 ``dynamic`` を設定します。
 
+  この情報は :ref:`release` で説明している、アップグレード、ダウングレードを行うリリースハンドラで使用される情報となります。
+
 .. Example: The child specification to start the server ch3 in the example above 
    looks like:
 
-サンプル: ch3サーバ起動する子プロセスの設定は次のようになります。
+サンプル: ``ch3`` サーバ起動する子プロセスの設定は次のようになります。
 
 .. code-block:: erlang
 
@@ -244,7 +254,7 @@ This is the type definition for a child specification:
 
 .. Example: A child specification to start the event manager from the chapter about gen_event:
 
-サンプル: gen_eventの章のイベントマネージャを起動する子プロセスの設定は次のようになります。
+サンプル: :ref:`gen_event` の章のイベントマネージャを起動する子プロセスの設定は次のようになります。
 
 .. code-block:: erlang
 
@@ -346,7 +356,7 @@ This is the type definition for a child specification:
 
 .. Sup is the pid, or name, of the supervisor. ChildSpec is a child specification.
 
-``Sup`` には、スーパバイザのpidもしくは名前を設定します。 ``ChildSpec`` には子プロセスの仕様を渡します。
+``Sup`` には、スーパバイザのpidもしくは名前を設定します。 ``ChildSpec`` には :ref:child_spec` を渡します。
 
 .. Child processes added using start_child/2 behave in the same manner as the other 
    child processes, with the following important exception: If a supervisor dies and 
@@ -379,7 +389,7 @@ Any child process, static or dynamic, can be stopped in accordance with the shut
 .. Sup is the pid, or name, of the supervisor. Id is the id specified in 
    the child specification.
 
-Supは、スーパバイザのpidか名前です。Idは子仕様の中で指定されているidです。
+Supは、スーパバイザのpidか名前です。Idは :ref:`child_spec` の中で指定されているidです。
 
 .. As with dynamically added child processes, the effects of deleting a 
    static child process is lost if the supervisor itself restarts.

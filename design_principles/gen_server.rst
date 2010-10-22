@@ -1,5 +1,7 @@
 .. 2 Gen_Server Behaviour
 
+.. _gen_server:
+
 ====================
 gen_serverビヘイビア
 ====================
@@ -8,6 +10,9 @@ gen_serverビヘイビア
    interface functions and callback functions are described in detail.
 
 この章は、gen_server(3)をプログラムに組み込む場合は読むべきです。本章ではすべてのインタフェース関数、およびコールバック関数の詳細について説明しています。
+
+.. image:: client_server_model.png
+   :alt: クライアント-サーバ モデル
 
 .. 2.1 Client-Server Principles
 
@@ -34,7 +39,7 @@ gen_serverビヘイビア
 .. An example of a simple server written in plain Erlang was given in Overview. 
    The server can be re-implemented using gen_server, resulting in this callback module:
 
-概要のページでは、純粋なErlangのみで実装したシンプルなサーバのサンプルを出しましたが、ここではそれをgen_serverを利用して書き換えたものを提示します。以下のコードがコールバックモジュールになります:
+:ref:`overview` のページでは、純粋なErlangのみで実装したシンプルなサーバのサンプルを出しましたが、ここではそれをgen_serverを利用して書き換えたものを提示します。以下のコードがコールバックモジュールになります:
 
 .. code-block:: erlang
 
@@ -241,7 +246,7 @@ alloc() ->
    The gen_server will automatically be terminated by its supervisor. Exactly 
    how this is done is defined by a shutdown strategy set in the supervisor.
 
-もしもgen_serverが監視ツリーの一部となっている場合には、stop関数を作る必要はありません。gen_serverは監視ツリーによって、自動的に停止させられます。正確には、スーパバイザの中に、シャットダウン戦略集を定義する必要があります。
+もしもgen_serverが監視ツリーの一部となっている場合には、stop関数を作る必要はありません。gen_serverは監視ツリーによって、自動的に停止させられます。正確には、スーパバイザの中に、 :ref:`shutdown_strategy <シャットダウン戦略>` 集を定義する必要があります。
 
 .. If it is necessary to clean up before termination, the shutdown strategy 
    must be a timeout value and the gen_server must be set to trap exit 

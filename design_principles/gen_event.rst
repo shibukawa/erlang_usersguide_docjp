@@ -1,5 +1,7 @@
 .. 4 Gen_Event Behaviour
 
+.. _gen_event:
+
 ===================
 gen_eventビヘイビア
 ===================
@@ -18,7 +20,7 @@ gen_eventビヘイビア
    event could be, for example, an error, an alarm or some information that 
    should be logged.
 
-OTP内には、イベントを送ることができる、イベントマネージャという名前付きのオブジェクトがあります。イベントというのは、例えばエラーや警告、その他のログに保存すべき情報群などが考えられます。
+OTP内には、 **イベント** を送ることができる、 **イベントマネージャ** という名前付きのオブジェクトがあります。イベントというのは、例えばエラーや警告、その他のログに保存すべき情報群などが考えられます。
 
 .. In the event manager, zero, one or several event handlers are installed. 
    When the event manager is notified about an event, the event will be 
@@ -29,7 +31,7 @@ OTP内には、イベントを送ることができる、イベントマネー�
    handler which does this. When logging to file is no longer necessary, 
    this event handler is deleted.
 
-イベントマネージャにはイベントハンドラを複数インストールすることができます。イベントマネージャにイベントの通知がくると、インストールされたすべてのイベントハンドラで処理されます。例えば、エラーを取り扱うイベントマネージャをデフォルトでインストールすることができます。このイベントハンドラは、エラーメッセージをコンソールに書きだします。もし、エラーメッセージを一定期間ファイルに保存したいのであれば、そのようなイベントハンドラを作って登録すれば実現することができます。ログをファイルに保存する必要がなくなれば、そのイベントハンドラは削除されます。
+イベントマネージャには **イベントハンドラ** を複数インストールすることができます。イベントマネージャにイベントの通知がくると、インストールされたすべてのイベントハンドラで処理されます。例えば、エラーを取り扱うイベントマネージャをデフォルトでインストールすることができます。このイベントハンドラは、エラーメッセージをコンソールに書きだします。もし、エラーメッセージを一定期間ファイルに保存したいのであれば、そのようなイベントハンドラを作って登録すれば実現することができます。ログをファイルに保存する必要がなくなれば、そのイベントハンドラは削除されます。
 
 .. An event manager is implemented as a process and each event handler 
    is implemented as a callback module.
@@ -272,7 +274,7 @@ file_loggerの場合には、 ``init`` の中で開いたファイルデスク�
    supervisor. Exactly how this is done is defined by a shutdown strategy 
    set in the supervisor.
 
-もし、イベントマネージャを監視ツリーの中で動かすのであれば、終了関数は不要です。監視ツリーが自動的にイベントマネージャを終了させます。正確には、スーパバイザのシャットダウン戦略を定義することで作業が完了します。
+もし、イベントマネージャを監視ツリーの中で動かすのであれば、終了関数は不要です。監視ツリーが自動的にイベントマネージャを終了させます。正確には、スーパバイザの :ref:`shutdown_strategy <シャットダウン戦略>` を定義することで作業が完了します。
 
 .. 4.7.2 Stand-Alone Event Managers
 

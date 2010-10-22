@@ -29,7 +29,8 @@
 他のアプリケーションからインクルードされていないアプリケーションを、プライマリ・アプリケーションと呼びます。
 
 
-Primary Application and Included Applications.
+.. image:: application.png
+   :alt: プライマリアプリケーションとインクルードされたアプリケーション
 
 .. The application controller will automatically load any included applications when 
    loading a primary application, but not start them. Instead, the top supervisor of 

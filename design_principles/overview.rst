@@ -1,9 +1,10 @@
 .. 1 Overview
 
+.. _overview:
+
 ====
 概要
 ====
-
 
 .. The OTP Design Principles is a set of principles for how to structure Erlang 
    code in terms of processes, modules and directories.
@@ -12,13 +13,13 @@ OTPデザイン原則集は、プロセス、モジュール、ディレクト�
 
 .. 1.1 Supervision Trees
 
-管理ツリー
+監視ツリー
 ==========
 
 .. A basic concept in Erlang/OTP is the supervision tree. This is a process 
    structuring model based on the idea of workers and supervisors.
 
-Erlang/OTPの基本的なコンセプトが、監視ツリー(supervision tree)です。これは、ワーカー、スーパーバイザーといったアイディアを元にした、プロセスの構造化モデルです。
+Erlang/OTPの基本的なコンセプトが、 **監視ツリー** (supervision tree)です。これは、 **ワーカー** 、 **スーパバイザ** といったアイディアを元にした、プロセスの構造化モデルです。
 
 .. * Workers are processes which perform computations, that is, they do the actual 
      work.
@@ -34,6 +35,9 @@ Erlang/OTPの基本的なコンセプトが、監視ツリー(supervision tree)�
      and workers, making it possible to design and program fault-tolerant software.
 
 * は、スーパバイザとワーカーが階層状に配置されたコードで、フォールトトレラントなソフトウェアの設計とプログラム開発を行えるようにします。
+
+.. image:: overview.png
+   :alt: 監視ツリー
 
 Supervision Tree
 
@@ -61,13 +65,13 @@ Supervision Tree
    the code for a process in a generic part (a behaviour module) and a specific 
    part (a callback module).
 
-ビヘイビアというのは、これらの共通のパターンを形式化したものです。ビヘイビアの考え方は、プロセスに関する汎用的なコード(ビヘイビアモジュール)と、特定の部分(コールバックモジュール)に分割するというものです。
+**ビヘイビア** というのは、これらの共通のパターンを形式化したものです。ビヘイビアの考え方は、プロセスに関する汎用的なコード(ビヘイビアモジュール)と、特定の部分(**コールバックモジュール**)に分割するというものです。
 
 .. The behaviour module is part of Erlang/OTP. To implement a process such as a 
    supervisor, the user only has to implement the callback module which should 
    export a pre-defined set of functions, the callback functions.
 
-ビヘイビアモジュールはErlang/OTPの一部です。スーパバイザのようなプロセスを実装するためには、ユーザは事前定義の関数とコールバック関数をエクスポートしている、コールバックのモジュールだけを定義すればよくなります。
+ビヘイビアモジュールはErlang/OTPの一部です。スーパバイザのようなプロセスを実装するためには、ユーザは事前定義の関数と **コールバック関数** をエクスポートしている、コールバックのモジュールだけを定義すればよくなります。
 
 .. An example to illustrate how code can be divided into a generic and a specific 
    part: Consider the following code (written in plain Erlang) for a simple server, 
@@ -252,25 +256,25 @@ Supervision Tree
 
 標準的なErlang/OTPのビヘイビアには以下のものがあります:
 
-gen_server
+:ref:`gen_server`
 
    .. For implementing the server of a client-server relation. 
 
    クライアント＝サーバの関係における、サーバを実装しています
 
-gen_fsm
+:ref:`gen_fsm`
 
    .. For implementing finite state machines. 
 
    有限状態機械を実装しています
 
-gen_event
+:ref:`gen_event`
 
    .. For implementing event handling functionality. 
 
    イベントハンドリングの機能を実装しています
 
-supervisor
+:ref:`supervisor`
 
    .. For implementing a supervisor in a supervision tree. 
 
@@ -303,7 +307,7 @@ supervisor
    programs. The minimal system based on Erlang/OTP consists of the applications 
    Kernel and STDLIB.
 
-Erlang/OTPはいくつものコンポーネントを伴います。それぞれのコンポーネントは、特定の機能を実装しています。Erlang/OTPの用語では、コンポーネントを「アプリケーション」と呼びます。Erlang/OTPアプリケーションのサンプルはMnesiaです。これはデータベースサービスをプログラムするのに必要なすべての機能を持っています。また、Debuggerもアプリケーションです。これはErlangのプログラムのデバッグに使用されます。最小のErlang/OTPベースのシステムは、KernelアプリケーションとSTDLIBアプリケーションを含みます。
+Erlang/OTPはいくつものコンポーネントを伴います。それぞれのコンポーネントは、特定の機能を実装しています。Erlang/OTPの用語では、コンポーネントを **アプリケーション** と呼びます。Erlang/OTPアプリケーションのサンプルはMnesiaです。これはデータベースサービスをプログラムするのに必要なすべての機能を持っています。また、Debuggerもアプリケーションです。これはErlangのプログラムのデバッグに使用されます。最小のErlang/OTPベースのシステムは、KernelアプリケーションとSTDLIBアプリケーションを含みます。
 
 .. The application concept applies both to program structure (processes) and 
    directory structure (modules).
@@ -314,16 +318,16 @@ Erlang/OTPはいくつものコンポーネントを伴います。それぞれ�
    a collection of functional modules. Such an application is called a library 
    application. An example of a library application is STDLIB.
 
-もっともシンプルな種類のアプリケーションはプロセスを一つも含みませんが、いくつかの機能を実装したモジュールで構成されます。このようなアプリケーションは、ライブラリアプリケーションと呼ばれます。ライブラリアプリケーションのサンプルとしてはSTDLIBがあります。
+もっともシンプルな種類のアプリケーションはプロセスを一つも含みませんが、いくつかの機能を実装したモジュールで構成されます。このようなアプリケーションは、 **ライブラリアプリケーション** と呼ばれます。ライブラリアプリケーションのサンプルとしてはSTDLIBがあります。
 
 .. An application with processes is easiest implemented as a supervision tree using 
    the standard behaviours.
 
-プロセスを含むアプリケーションは、標準的なビヘイビアを使用して、スーパービジョンツリーとして実装するのが最も簡単です。
+プロセスを含むアプリケーションは、標準的なビヘイビアを使用して、監視ツリーとして実装するのが最も簡単です。
 
 .. How to program applications is described in Applications.
 
-どのようにアプリケーションをプログラムしていくのか、ということについては、アプリケーションの章で説明していきます。
+どのようにアプリケーションをプログラムしていくのか、ということについては、 :ref:`applications` の章で説明していきます。
 
 .. 1.4 Releases
 
@@ -333,11 +337,11 @@ Erlang/OTPはいくつものコンポーネントを伴います。それぞれ�
 .. A release is a complete system made out from a subset of the Erlang/OTP 
    applications and a set of user-specific applications.
 
-リリースはErlang/OTPアプリケーションのサブセットと、ユーザ定義のアプリケーションから作成されます。
+**リリース** はErlang/OTPアプリケーションのサブセットと、ユーザ定義のアプリケーションから作成されます。
 
 .. How to program releases is described in Releases.
 
-どのようにリリースをプログラムするのか、ということについてはリリースの章で説明していきます。
+どのようにリリースをプログラムするのか、ということについては :ref:`releases` の章で説明していきます。
 
 .. How to install a release in a target environment is described in the chapter 
    about Target Systems in System Principles.
@@ -352,6 +356,6 @@ Erlang/OTPはいくつものコンポーネントを伴います。それぞれ�
 .. Release handling is upgrading and downgrading between different versions of a 
    release, in a (possibly) running system. How to do this is described in Release Handling.
 
-リリースのハンドリングというのは、実行中のシステムにおいて、異なるバージョンのリリースの間で、アップグレードしたり、ダウングレードしたりすることです。どのようにこれを行うのか、ということに関しては、リリースのハンドリングの章で説明していきます。
+**リリースのハンドリング** というのは、実行中のシステムにおいて、異なるバージョンのリリースの間で、アップグレードしたり、ダウングレードしたりすることです。どのようにこれを行うのか、ということに関しては、 :ref:`release handling` の章で説明していきます。
 
 Copyright (c) 1991-2009 Ericsson AB

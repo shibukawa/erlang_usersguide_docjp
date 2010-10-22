@@ -1,5 +1,7 @@
 .. 3 Gen_Fsm Behaviour
 
+.. _gen_fsm:
+
 =================
 gen_fsmビヘイビア
 =================
@@ -310,7 +312,7 @@ Gen_Fsmをはじめよう
    The gen_fsm will automatically be terminated by its supervisor. Exactly 
    how this is done is defined by a shutdown strategy set in the supervisor.
 
-もし、gen_fsmを監視ツリーの中で動かすのであれば、終了関数は不要です。監視ツリーが自動的にgen_fsmを終了させます。正確には、スーパバイザのシャットダウン戦略を定義することで作業が完了します。
+もし、gen_fsmを監視ツリーの中で動かすのであれば、終了関数は不要です。監視ツリーが自動的にgen_fsmを終了させます。正確には、スーパバイザの :ref:`shutdown_strategy <シャットダウン戦略集>` を定義することで作業が完了します。
 
 .. If it is necessary to clean up before termination, the shutdown strategy must 
    be a timeout value and the gen_fsm must be set to trap exit signals in the 

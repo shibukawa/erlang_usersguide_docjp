@@ -14,7 +14,7 @@ sysモジュールには、ビヘイビアを使って実装された、シン�
    OTP design principles without making use of a standard behaviour. They can also 
    be used to implement user defined (non-standard) behaviours.
 
-これ以外にも、一緒に使用できる関数がproc_libモジュールに定義されており、これを使って特別なプロセスや、標準のビヘイビアを利用しないがOTPの設計原則に即したプロセスなどを実装することができます。これらを使って、非標準の、ユーザ定義のビヘイビアを実装することもできます。
+これ以外にも、一緒に使用できる関数がproc_libモジュールに定義されており、これを使って **特別なプロセス** や、標準のビヘイビアを利用しないがOTPの設計原則に即したプロセスなどを実装することができます。これらを使って、非標準の、ユーザ定義のビヘイビアを実装することもできます。
 
 Both sys and proc_lib belong to the STDLIB application.
 
@@ -29,7 +29,7 @@ sysとproc_libの両方共、標準ライブラリのapplicationに属してい�
    implemented using behaviours. We use the code_lock example from the 
    gen_event chapter to illustrate this:
 
-sysモジュールには、ビヘイビアを利用して実装したプロセスのデバッグを簡単に行うための関数がいくつか定義されています。get_eventの章で説明したcode_lockの例を使って紹介します。
+sysモジュールには、ビヘイビアを利用して実装したプロセスのデバッグを簡単に行うための関数がいくつか定義されています。 :ref:`get_event` の章で説明したcode_lockの例を使って紹介します。
 
 .. code-block:: erlang
 
@@ -103,11 +103,11 @@ sysモジュールには、ビヘイビアを利用して実装したプロセ�
 
 .. * support the sysdebug facilities, and
 
-* sysdebug機能をサポートしています。
+* sys は :ref:`debug_facility` をサポートしています。
 
 .. * take care of system messages.
 
-* システムメッセージに注意を払います。
+* :ref:`system_message` に注意を払います。
 
 .. System messages are messages with special meaning, used in the supervision 
    tree. Typical system messages are requests for trace output, and requests 
@@ -125,7 +125,7 @@ sysモジュールには、ビヘイビアを利用して実装したプロセ�
 .. The simple server from the Overview chapter, implemented using sys and 
    proc_lib so it fits into a supervision tree:
 
-概要の章で、シンプルなサーバの実装例を紹介しましたが、ここではsysとproc_libを用いて、監視ツリーで使用できるように実装していきます。
+:ref:`overview` の章で、シンプルなサーバの実装例を紹介しましたが、ここではsysとproc_libを用いて、監視ツリーで使用できるように実装していきます。
 
 .. code-block:: erlang
 
@@ -285,8 +285,10 @@ proc_libモジュール内の関数は、プロセスを起動されるのに使
 
 .. 6.2.3 Debugging
 
-デバッグ
---------
+.. _debug_facility:
+
+デバッグ機能
+------------
 
 .. To support the debug facilites in sys, we need a debug structure, a term 
    Deb which is initialized using sys:debug_options/1:
@@ -305,7 +307,7 @@ sysモジュールデバッグ環境をサポートさせるには、 ``sys:debu
    which means no debugging is enabled initially. See sys(3) for information about 
    possible options.
 
-``sys:debug_options/1``はリスト型のオプションを引数に取ります。ここでは空のリストを渡していますが、これは初期化の際には、デバッグ機能は利用しない、という意味です。使用できるオプションについては、sys(3)を参照してください。
+``sys:debug_options/1`` はリスト型のオプションを引数に取ります。ここでは空のリストを渡していますが、これは初期化の際には、デバッグ機能は利用しない、という意味です。使用できるオプションについては、sys(3)を参照してください。
 
 .. Then for each system event that we want to be logged or traced, the following
    function should be called.
@@ -380,6 +382,8 @@ sysモジュールデバッグ環境をサポートさせるには、 ``sys:debu
        io:format(Dev, "~p event = ~p~n", [Name, Event]).
 
 .. 6.2.4 Handling System Messages
+
+.. _system_message:
 
 システムメッセージの操作
 ------------------------

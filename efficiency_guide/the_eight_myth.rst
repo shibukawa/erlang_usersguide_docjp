@@ -4,7 +4,7 @@
 
 .. index:: 都市伝説
 
-2. Erlangのパフォーマンスに関する8つの都市伝説
+2 Erlangのパフォーマンスに関する8つの都市伝説
 ==============================================
 
 .. Some truths seem to live on well beyond their best-before date,
