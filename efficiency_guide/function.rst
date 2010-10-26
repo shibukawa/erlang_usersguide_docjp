@@ -2,9 +2,9 @@
 
 .. 6 Functions
 
-======
-6 関数
-======
+====
+関数
+====
 
 .. 6.1 Pattern matching
 
@@ -15,8 +15,8 @@
   statement: when
   builtin: is_integer/1
 
-6.1 パターンマッチ
-==================
+パターンマッチ
+==============
 
 .. Pattern matching in function head and in case and receive clauses are optimized by the compiler. With a few exceptions, there is nothing to gain by rearranging clauses.
 
@@ -160,8 +160,8 @@
   builtin: apply/3
   object: fun
 
-6.2 関数呼び出し
-================ 
+関数呼び出し
+============
 
 .. Here is an intentionally rough guide to the relative costs of different kinds of calls. It is based on benchmark figures run on Solaris/Sparc:
 
@@ -179,8 +179,8 @@
   object: fun
   single: タプルfun
 
-6.2.1 注意点と、実装の詳細
---------------------------
+注意点と、実装の詳細
+--------------------
 
 .. Calling and applying a fun does not involve any hash-table lookup. A fun contains an (indirect) pointer to the function that implements the fun.
 
@@ -224,8 +224,8 @@ funに対する呼び出しやapplyでは、ハッシュテーブルの検索は
 .. index::
   single: 末尾再帰; メモリ使用量
 
-6.3 再帰呼び出し時のメモリ使用量
-================================
+再帰呼び出し時のメモリ使用量
+============================
 
 .. When writing recursive functions it is preferable to make them tail-recursive so that they can execute in constant memory space.
 
@@ -258,5 +258,5 @@ funに対する呼び出しやapplyでは、ハッシュテーブルの検索は
 ..      0. % Base case
 
 
-Copyright © 1991-2009 Ericsson AB
+Copyright c 1991-2009 Ericsson AB
 

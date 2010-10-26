@@ -2,8 +2,8 @@
 
 .. 5 List handling
 
-5 リストの操作
-==============
+リストの操作
+============
 
 .. 5.1 Creating a list
 
@@ -13,8 +13,8 @@
   single: listsモジュール; append/1
   single: listsモジュール; reverse/1
 
-5.1 リストの作成
-----------------
+リストの作成
+------------
 
 .. Lists can only be built starting from the end and attaching list elements at the beginning. If you use the ++ operator like this
 
@@ -77,8 +77,8 @@
 .. index::
   single: リスト; 内包表記
 
-5.2 リスト内包表記
-------------------
+リスト内包表記
+--------------
 
 .. Lists comprehensions still have a reputation for being slow. They used to be implemented using funs, which used to be slow.
 
@@ -124,7 +124,9 @@ R12Bでは、リスト内包表記の結果のリストが明らかに使用さ�
 
 .. the value is neither assigned to a variable, nor passed to another function, nor returned, so there is no need to construct a list and the compiler will simplify the code for the list comprehension to
 
-この場足、値は変数に格納されることもありませんし、他の関数に渡されたり、返り値として返されることもありません。ここではコンパイラが、リストを作成する必要がないということを知ることができるため、リスト内包表記のコードもシンプルに生成します。::
+この場足、値は変数に格納されることもありませんし、他の関数に渡されたり、返り値として返されることもありません。ここではコンパイラが、リストを作成する必要がないということを知ることができるため、リスト内包表記のコードもシンプルに生成します。
+
+.. code-block:: erlang
 
   'Lc^0'([E|Tail], Expr) ->
       Expr(E),
@@ -140,8 +142,8 @@ R12Bでは、リスト内包表記の結果のリストが明らかに使用さ�
   builtin: iolist_to_binary/1
   single: リスト; フラット
 
-5.3 深いリスト/フラットなリスト
--------------------------------
+深いリスト/フラットなリスト
+---------------------------
 
 .. lists:flatten/1 builds an entirely new list. Therefore, it is expensive, and even more expensive than the ++ (which copies its left argument, but not its right argument).
 
@@ -240,8 +242,8 @@ appendの例
 .. index::
   pair: リスト; 末尾再帰
 
-5.4 なぜリストを再帰する関数に対して心配する必要がないのか？
--------------------------------------------------------------
+なぜリストを再帰する関数に対して心配する必要がないのか？
+--------------------------------------------------------
 
 .. In the performance myth chapter, the following myth was exposed: Tail-recursive functions are MUCH faster than recursive functions.
 

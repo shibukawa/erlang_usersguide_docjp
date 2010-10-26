@@ -1,14 +1,14 @@
 .. 1 Introduction
 
-1 イントロダクション
-====================
+イントロダクション
+==================
 
 .. 1.1 Purpose
 
 .. index:: 目的, 効率的なコード
 
-1.1 目的
---------
+目的
+----
 
 ..  Premature optimization is the root of all evil. -- D.E. Knuth
 
@@ -47,8 +47,8 @@
 
 .. 1.2 Prerequisites
 
-1.2 必要条件
-------------
+条件
+----
 
 .. It is assumed that the reader is familiar with the Erlang programming
    language and concepts of OTP.

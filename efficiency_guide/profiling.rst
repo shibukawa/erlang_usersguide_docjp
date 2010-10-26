@@ -1,13 +1,13 @@
 .. 10 Profiling
 
-===================
-10 プロファイリング
-===================
+================
+プロファイリング
+================
 
 .. 10.1 Do not guess about performance - profile
 
-10.1 パフォーマンスについて推測で語るべからず - プロファイル
-============================================================
+パフォーマンスについて推測で語るべからず - プロファイル
+=======================================================
 
 .. Even experienced software developers often guess wrong about where the performance bottlenecks are in their programs.
 
@@ -35,8 +35,8 @@ coverは、プロセスごとに、どの行を何回実行したかという情
 
 .. 10.2 Big systems
 
-10.2 巨大なシステム
-===================
+巨大なシステム
+==============
 
 .. If you have a big system it might be interesting to run profiling on a simulated and limited scenario to start with. But bottlenecks have a tendency to only appear or cause problems when there are many things going on at the same time, and when there are many nodes involved. Therefore it is desirable to also run profiling in a system test plant on a real target system.
 
@@ -48,8 +48,8 @@ coverは、プロセスごとに、どの行を何回実行したかという情
 
 .. 10.3 What to look for
 
-10.3 何を探すのか？
-===================
+何を探すのか？
+==============
 
 .. When analyzing the result file from the profiling activity you should look for functions that are called many times and have a long "own" execution time (time excluded calls to other functions). Functions that just are called very many times can also be interesting, as even small things can add up to quite a bit if they are repeated often. Then you need to ask yourself what can I do to reduce this time. Appropriate types of questions to ask yourself are:
 
@@ -75,16 +75,16 @@ coverは、プロセスごとに、どの行を何回実行したかという情
 
 .. 10.4 Tools
 
-10.4 ツール
-===========
+ツール
+======
 
 .. 10.4.1 fprof
 
 .. index::
   pair: fprof; プロファイリング
 
-10.4.1 fprof
-------------
+fprof
+-----
 
 .. fprof measures the execution time for each function, both own time i.e how much time a function has used for its own execution, and accumulated time i.e. including called functions. The values are displayed per process. You also get to know how many times each function has been called. fprof is based on trace to file in order to minimize runtime performance impact. Using fprof is just a matter of calling a few library functions, see fprof manual page under the application tools.
 
@@ -97,8 +97,8 @@ fporfはErlang/OTPのR8というバージョンから導入されました。先
 .. index::
   pair: cover; プロファイリング
 
-10.4.2 cover
-------------
+cover
+-----
 
 .. cover's primary use is coverage analysis to verify test cases, making sure all relevant code is covered. cover counts how many times each executable line of code is executed when a program is run. This is done on a per module basis. Of course this information can be used to determine what code is run very frequently and could therefore be subject for optimization. Using cover is just a matter of calling a few library functions, see cover manual page under the application tools.
 
@@ -108,8 +108,8 @@ coverは主にテストケースが、関連コードをすべてカバーして
   pair: cprof; プロファイリング
 
 
-10.4.3 cprof
-------------
+cprof
+-----
 
 .. cprof is something in between fprof and cover regarding features. It counts how many times each function is called when the program is run, on a per module basis. cprof has a low performance degradation (versus fprof and eprof) and does not need to recompile any modules to profile (versus cover).
 
@@ -124,8 +124,8 @@ cporfはfporfとcoverの中間の機能を備えたものです。cporfは関数
   single: covor; 比較
   single: cprof; 比較
 
-10.4.4 ツールまとめ
--------------------
+ツールまとめ
+------------
 
 .. Tool	 Results	 Size of result	 Effects on program execution time	 Records number of calls	 Records Execution time	 Records called by	 Records garbage collection
 .. fprof	 per process to screen/file	 large	 significant slowdown	 yes	 total and own	 yes	 yes
@@ -134,24 +134,51 @@ cporfはfporfとcoverの中間の機能を備えたものです。cporfは関数
 .. cprof	 per module to caller	 small	 small slowdown	 yes	 no	 no	 no
 
 
-+--------+---------------------------+------------+--------------+------------+----------+------------+--------------+
-| ツール | 結果                      | 結果サイズ | プログラム   | コール回数 | 実行時間 | 呼び出し元 | ガーベジ     |
-|        |                           |            | 実行時間     | の記録     | の記録   | の記録     | コレクション |
-|        |                           |            | への影響     |            |          |            | の記録       |
-+========+===========================+============+==============+============+==========+============+==============+
-| fporf  | プロセスごとに画面 /      | 大きい     | 極めて大きい | O          | トータル | O          | O            |
-|        | ファイルに出力            |            |              |            | / 個別   |            |              |
-+--------+---------------------------+------------+--------------+------------+----------+------------+--------------+
-| eporf  | プロセス/関数ごとに画面 / | 中間       | 極めて大きい | O          | トータル | X          | X            |
-|        | ファイルに出力            |            |              |            |          |            |              |
-+--------+---------------------------+------------+--------------+------------+----------+------------+--------------+
-| cover  | モジュールごとに画面 /    | 小さい     | 中間の低下   | O          | X        | X          | X            |
-|        | ファイルに出力            |            |              | 行ごと     |          |            |              |
-+--------+---------------------------+------------+--------------+------------+----------+------------+--------------+
-| cporf  | モジュールごとに          | 小さい     | 極めて小さい | O          | X        | X          | X            |
-|        | 呼び出し元に結果を通知    |            |              |            |          |            |              |
-+--------+---------------------------+------------+--------------+------------+----------+------------+--------------+
-
+.. list-table::
+   :header-rows: 1
+   :widths: 3 10 4 4 4 4 4 4
+   
+   - * ツール
+     * 結果
+     * 結果サイズ
+     * プログラム実行時間への影響
+     * コール回数の記録
+     * 実行時間の記録
+     * 呼び出し元の記録
+     * ガベージコレクションの記録
+   - * fprof
+     * プロセスごとに画面/ファイルに出力
+     * 大きい
+     * 極めて大きい
+     * O
+     * - トータル
+       - 個別
+     * O
+     * O
+   - * eprof
+     * プロセス/関数ごとに画面/ファイルに出力
+     * 中間
+     * 極めて大きい
+     * O
+     * トータル
+     * X
+     * X
+   - * cover
+     * モジュールごとに画面/ファイルに出力
+     * 小さい
+     * 中間の低下
+     * O/行ごと
+     * X
+     * X
+     * X
+   - * eprof
+     * モジュールごとに呼び出し元に結果を通知
+     * 小さい
+     * 極めて小さい
+     * O
+     * X
+     * X
+     * X
 
 .. 10.5 Benchmarking
 
@@ -162,8 +189,8 @@ cporfはfporfとcoverの中間の機能を備えたものです。cporfは関数
   builtin: statistics/1
 
 
-10.5 ベンチマーク
-=================
+ベンチマーク
+============
 
 .. The main purpose of benchmarking is to find out which implementation of a given algorithm or function is the fastest. Benchmarking is far from an exact science. Today's operating systems generally run background tasks that are difficult to turn off. Caches and multiple CPU cores doesn't make it any easier. It would be best to run Unix-computers in single-user mode when benchmarking, but that is inconvenient to say the least for casual testing.
 
@@ -199,4 +226,4 @@ _`statistics/1`: http://erlang.org/doc/man/erlang.html#statistics-1
 * どちらのタイプの測定を行うにしても、システムの粒度は、極めて重要です。少なくとも数秒間続くようなものをそれぞれ計測すべきです。テストを平等なものにするためには、それぞれのテストを実行する時には、新しく作成したErlangのプロセスで行うべきでしょう。そうしないで、もし同じプロセスを使ってすべてのテストを実行してしまうと、後半のテストはヒープサイズが大きな状態で起動され、ガーベジコレクションの回数も小さくなってしまうことも考えられるからです。それぞれのテストごとにErlangエミュレータを再起動しましょう。
 * Xというコンピュータのアーキテクチャで最速だったアルゴリズムの実装が、Yというコンピュータのアーキテクチャでも最速であるということはありません。
    
-Copyright © 1991-2009 Ericsson AB
+Copyright c 1991-2009 Ericsson AB

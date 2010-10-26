@@ -5,9 +5,9 @@
 .. index::
   single: バイナリ; 作成
 
-============================
-4 バイナリの構築とマッチング
-============================
+==========================
+バイナリの構築とマッチング
+==========================
 
 .. In R12B, the most natural way to write binary construction
 .. and matching is now significantly faster than in earlier releases.
@@ -69,8 +69,8 @@ R12B以前のリリースでは、Accは繰り返し [1]_ ごとにコピーさ�
   pair: バイナリ; サブバイナリ
   pair: バイナリ; マッチコンテキスト
 
-4.1 バイナリはどのように実装されているのか？
-============================================
+バイナリはどのように実装されているのか？
+========================================
 
 .. Internally, binaries and bitstrings are implemented
 .. in the same way. In this section, we will call them
@@ -164,8 +164,8 @@ R12B以降は、コンパイラはできるだけサブバイナリを作成す�
 .. index::
   pair: 作成; バイナリ
 
-4.2 バイナリの作成
-==================
+バイナリの作成
+==============
 
 .. In R12B, appending to a binary or bitstring
 
@@ -228,8 +228,8 @@ R12Bでは以下のようにして、バイナリ、ビット文字列に対し�
   single: erlangモジュール; port_command/2
 
 
-4.2.1 強制コピーを行う状況
---------------------------
+強制コピーを行う状況
+--------------------
 
 .. The optimization of the binary append operation requires that there is a single ProcBin and a single reference to the ProcBin for the binary. The reason is that the binary object can be moved (reallocated) during an append operation, and when that happens the pointer in the ProcBin must be updated. If there would be more than on ProcBin pointing to the binary object, it would not be possible to find and update all of them.
 
@@ -295,8 +295,8 @@ Bin1は3行目でコピーされるます。
 .. index::
   single: バイナリ; マッチング
 
-4.3 バイナリのマッチング
-========================
+バイナリのマッチング
+====================
 
 .. We will revisit the example shown earlier
 
@@ -438,8 +438,8 @@ my_binary_to_list/1に返す場合、バイナリがすべて探索し終わる�
   single: bin_opt_infoオプション
   single: バイナリ; 最適化のための情報
 
-4.3.1 bin_opt_infoオプション
-----------------------------
+bin_opt_infoオプション
+----------------------
 
 .. Use the bin_opt_info option to have the compiler print a lot of information about binary optimizations. It can be given either to the compiler or erlc
 
@@ -552,8 +552,8 @@ INFOとNOT OPTIMIZED警告が分かりやすく区別できるような他のサ
 .. index::
   single: 未使用変数
 
-4.3.2 未使用変数
-----------------
+未使用変数
+----------
 
 .. The compiler itself figures out if a variable is unused. The same code is generated for each of the following functions
 

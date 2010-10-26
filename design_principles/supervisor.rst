@@ -152,7 +152,7 @@ MaxT秒の間に、MaxRの数値以上に再起動が発生した場合に、ス
 子プロセスの仕様の設定
 ======================
 
-This is the type definition for a child specification:
+.. This is the type definition for a child specification:
 
 次のコードは子供の仕様に対するtype定義です:
 
@@ -356,7 +356,7 @@ This is the type definition for a child specification:
 
 .. Sup is the pid, or name, of the supervisor. ChildSpec is a child specification.
 
-``Sup`` には、スーパバイザのpidもしくは名前を設定します。 ``ChildSpec`` には :ref:child_spec` を渡します。
+``Sup`` には、スーパバイザのpidもしくは名前を設定します。 ``ChildSpec`` には :ref:`child_spec` を渡します。
 
 .. Child processes added using start_child/2 behave in the same manner as the other 
    child processes, with the following important exception: If a supervisor dies and 
@@ -370,7 +370,8 @@ This is the type definition for a child specification:
 子プロセスの停止
 ================
 
-Any child process, static or dynamic, can be stopped in accordance with the shutdown specification:
+.. Any child process, static or dynamic, can be stopped in accordance with the shutdown 
+   specification:
 
 静的、動的に関わらず、すべての子プロセスは次のようなシャットダウン仕様に従って止めることができます。
 

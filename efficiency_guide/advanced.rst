@@ -1,12 +1,12 @@
 .. 9 Advanced
 
-9 マニアックな話題
+マニアックな話題
 ==================
 
 .. 9.1 Memory
 
-9.1 メモリ
-----------
+メモリ
+------
 
 .. A good start when programming efficiently is to have knowledge about how much memory different data types and operations require. It is implementation-dependent how much memory the Erlang data types and other items consume, but here are some figures for erts-5.2 system (OTP release R9B). (There have been no significant changes in R13.)
 
@@ -103,8 +103,8 @@
 
 .. 9.2 System limits
 
-9.2 システムの限界
-------------------
+システムの限界
+--------------
 
 .. The Erlang language specification puts no limits on number of processes, length of atoms etc., but for performance and memory saving reasons, there will always be limits in a practical implementation of the Erlang language and execution environment.
 

@@ -16,7 +16,7 @@ sysモジュールには、ビヘイビアを使って実装された、シン�
 
 これ以外にも、一緒に使用できる関数がproc_libモジュールに定義されており、これを使って **特別なプロセス** や、標準のビヘイビアを利用しないがOTPの設計原則に即したプロセスなどを実装することができます。これらを使って、非標準の、ユーザ定義のビヘイビアを実装することもできます。
 
-Both sys and proc_lib belong to the STDLIB application.
+.. Both sys and proc_lib belong to the STDLIB application.
 
 sysとproc_libの両方共、標準ライブラリのapplicationに属しています。
 

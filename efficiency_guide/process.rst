@@ -2,9 +2,9 @@
 
 .. 8 Processes
 
-==========
-8 プロセス
-==========
+========
+プロセス
+========
 
 .. 8.1 Creation of an Erlang process
 
@@ -16,8 +16,8 @@
   builtin: loop/0
   single: erlangモジュール; system_info/1
 
-8.1 Erlangプロセスの作成
-========================
+Erlangプロセスの作成
+====================
 
 .. An Erlang process is lightweight compared to operating systems threads and processes.
 
@@ -86,8 +86,8 @@ io:format/2の呼び出しは行われません。代わりにリターンアド
   pair: プロセス; ヒープサイズ
   builtin: spawn_opt/4
 
-8.1.1 初期ヒープサイズ
-----------------------
+初期ヒープサイズ
+----------------
 
 .. The default initial heap size of 233 words is quite conservative in order to support Erlang systems with hundreds of thousands or even millions of processes. The garbage collector will grow and shrink the heap as needed.
 
@@ -118,8 +118,8 @@ io:format/2の呼び出しは行われません。代わりにリターンアド
 .. index::
   pair: プロセス; メッセージ
 
-8.2 プロセスメッセージ
-======================
+プロセスメッセージ
+==================
 
 .. All data in messages between Erlang processes is copied, with the exception of refc binaries on the same Erlang node.
 
@@ -135,8 +135,8 @@ Erlangプロセス間のメッセージに含まれる全てのデータは、�
   pair: プロセス; 定数
   pair: プロセス; 定数プール
 
-8.2.1. 定数プール
----------------------
+定数プール
+----------
 
 .. Constant Erlang terms (also called literals) are now kept in constant pools; each loaded module has its own pool. The following function
 
@@ -164,8 +164,8 @@ Erlangプロセス間のメッセージに含まれる全てのデータは、�
   single: erts_debugモジュール; size/1
   single: erts_debugモジュール; flat_size/1
 
-8.2.2 共有することによる損失
-----------------------------
+共有することによる損失
+----------------------
 
 .. Shared sub-terms are not preserved when a term is sent to another process, passed as the initial process arguments in the spawn call, or stored in an ETS table. That is an optimization. Most applications do not send message with shared sub-terms.
 
@@ -230,8 +230,8 @@ Erlang/OTPの将来のリリースでは、オプションで、共有を保存�
 .. index::
   pair: SMPエミュレータ; プロセス
 
-8.3 SMPエミュレータ
-===================
+SMPエミュレータ
+===============
 
 .. The SMP emulator (introduced in R11B) will take advantage of multi-core or multi-CPU computer by running several Erlang schedulers threads (typically, the same as the number of cores). Each scheduler thread schedules Erlang processes in the same way as the Erlang scheduler in the non-SMP emulator.
 
@@ -249,4 +249,4 @@ SMPエミュレータを使用してパフォーマンスを古城させるに�
 
 並列性に関する潜在能力がどの程度あるかや、スケールしないボトルネックがどれだけあるかについては、プロファイルを使用することで、そのアプリケーションの感覚を得ることができます。
 
-Copyright © 1991-2009 Ericsson AB
+Copyright c 1991-2009 Ericsson AB

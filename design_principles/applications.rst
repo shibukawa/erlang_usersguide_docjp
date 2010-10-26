@@ -1,5 +1,7 @@
 .. 7 Applications
 
+.. _applications:
+
 ================
 アプリケーション
 ================
@@ -378,7 +380,10 @@ Erlangランタイムシステムが起動されると、Kernelアプリケー�
    7> application:stop(ch_app).
    ok
 
-The application master stops the application by telling the top supervisor to shutdown. The top supervisor tells all its child processes to shutdown etc. and the entire tree is terminated in reversed start order. The application master then calls the application callback function stop/1 in the module defined by the mod key.
+.. The application master stops the application by telling the top supervisor to shutdown. 
+   The top supervisor tells all its child processes to shutdown etc. and the entire tree 
+   is terminated in reversed start order. The application master then calls the application 
+   callback function stop/1 in the module defined by the mod key.
 
 アプリケーションマスターは、トップのスーパバイザに停止するように伝えて、アプリケーションを停止させます。トップのスーパバイザは、すべての子プロセスに停止するように伝え、ツリー全体は、起動した時とは逆の順序で終了します。全部の子プロセスが停止したら、アプリケーションマスターは、 ``mod`` キーで定義されたファイルのコールバック関数の ``stop/1`` を呼び出します。
 
@@ -471,7 +476,8 @@ The application master stops the application by telling the top supervisor to sh
 
 もしも、 :ref:`updating_application_specifications` が使用されていて、1つのシステム構成だけが使用されるのであれば、そのファイルは ``sys.config`` という名前にすべきです。
 
-The values in the .app file, as well as the values in a system configuration file, can be overridden directly from the command line:
+.. The values in the .app file, as well as the values in a system configuration file, can 
+   be overridden directly from the command line:
 
 ``.app`` ファイルの値、および、システム構成ファイルの値は、次のようなコマンドライン引数を直接渡すと、オーバーライドすることができます。
 

@@ -39,8 +39,6 @@ Erlang/OTPの基本的なコンセプトが、 **監視ツリー** (supervision 
 .. image:: overview.png
    :alt: 監視ツリー
 
-Supervision Tree
-
 監視ツリー
 
 .. In the figure above, square boxes represents supervisors and circles represent workers.
@@ -59,7 +57,7 @@ Supervision Tree
    supervise. Also, many of the workers are servers in a server-client relation, 
    finite state machines, or event handlers such as error loggers.
 
-管理ツリーでは、多くのプロセスが同じようなパターンに従った、似た構造をしています。例えば、スーパバイザははどれも似たような構造をしています。それらの違いはスーパバイザが監視する子供のプロセスだけです。そのため、多くのワーカーがサーバ＝クライアントの関係におけるサーバであって、有限状態機械(FSM)を構成していて、エラーロガーのイベントハンドラをしています。
+監視ツリーでは、多くのプロセスが同じようなパターンに従った、似た構造をしています。例えば、スーパバイザははどれも似たような構造をしています。それらの違いはスーパバイザが監視する子供のプロセスだけです。そのため、多くのワーカーがサーバ＝クライアントの関係におけるサーバであって、有限状態機械(FSM)を構成していて、エラーロガーのイベントハンドラをしています。
 
 .. Behaviours are formalizations of these common patterns. The idea is to divide 
    the code for a process in a generic part (a behaviour module) and a specific 
@@ -278,12 +276,12 @@ Supervision Tree
 
    .. For implementing a supervisor in a supervision tree. 
 
-   管理ツリーのスーパバイザを実装しています
+   監視ツリーのスーパバイザを実装しています
 
 .. The compiler understands the module attribute -behaviour(Behaviour) and issues 
    warnings about missing callback functions. Example:
 
-コンパイラはモジュール属性の -behaviour(Behaviour) というのを理解します。もしもコールバック関数が足りない場合には、以下のように警告を出します:
+コンパイラはモジュール属性の ``-behaviour(Behaviour)`` という行を理解します。もしもコールバック関数が足りない場合には、以下のように警告を出します:
 
 .. code-block:: erlang
 

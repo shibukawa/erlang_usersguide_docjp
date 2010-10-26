@@ -2,9 +2,9 @@
 
 .. 7 Tables and databases
 
-========================
-7 テーブルとデータベース
-========================
+======================
+テーブルとデータベース
+======================
 
 .. 7.1 Ets, Dets and Mnesia
 
@@ -13,8 +13,8 @@
   single: Dets
   single: Mnesia
 
-7.1 Ets, Dets, Mnesia
-=====================
+Ets, Dets, Mnesia
+=================
 
 .. Every example using Ets has a corresponding example in Mnesia. In general all Ets examples also apply to Dets tables.
 
@@ -34,8 +34,8 @@ Etsの使用方法に関するサンプルというのは、全てMnesiaのサ�
   pair: テーブル; ordered_set
   single: _; テーブルのマッチ
 
-7.1.1 セレクト、マッチ操作
----------------------------
+セレクト、マッチ操作
+--------------------
 
 .. Select/Match operations on Ets and Mnesia tables can become very expensive operations. They usually need to scan the complete table. You should try to structure your data so that you minimize the need for select/match operations. However, if you really need a select/match operation, it will still be more efficient than using tab2list. Examples of this and also of ways to avoid select/match will be provided in some of the following sections. The functions ets:select/2 and mnesia:select/3 should be preferred over ets:match/2,ets:match_object/2, and mnesia:match_object/3.
 
@@ -62,8 +62,8 @@ EtsテーブルとMnesiaテーブルに関するセレクト、マッチの操�
   single: etsモジュール; delete/2
   single: etsモジュール; lookup/2
 
-7.1.2 要素の削除
-----------------
+要素の削除
+----------
 
 .. The delete operation is considered successful if the element was not present in the table. Hence all attempts to check that the element is present in the Ets/Mnesia table before deletion are unnecessary. Here follows an example for Ets tables.
 
@@ -96,8 +96,8 @@ EtsテーブルとMnesiaテーブルに関するセレクト、マッチの操�
   single: etsモジュール; lookup/2
   single: テーブル; データの取得
 
-7.1.3 データの取得
-------------------
+データの取得
+------------
 
 .. Do not fetch data that you already have! Consider that you have a module that handles the abstract data type Person. You export the interface function print_person/1 that uses the internal functions print_name/1, print_age/1, print_occupation/1.
 
@@ -176,8 +176,8 @@ EtsテーブルとMnesiaテーブルに関するセレクト、マッチの操�
 .. index::
   single: テーブル; 永続化しない
 
-7.1.4 永続化しないデータストレージ
-----------------------------------
+永続化しないデータストレージ
+----------------------------
 
 .. For non-persistent database storage, prefer Ets tables over Mnesia local_content tables. Even the Mnesia dirty_write operations carry a fixed overhead compared to Ets writes. Mnesia must check if the table is replicated or has indices, this involves at least one Ets lookup for each dirty_write. Thus, Ets writes will always be faster than Mnesia writes.
 
@@ -188,8 +188,8 @@ EtsテーブルとMnesiaテーブルに関するセレクト、マッチの操�
   single: etsモジュール; select/2
   single: テーブル; データ取得
 
-7.1.5 tab2list
---------------
+tab2list
+--------
 
 .. Assume we have an Ets-table, which uses idno as key, and contains
 
@@ -300,8 +300,8 @@ idnoをキーとして、以下のデータを含むEtsテーブルがあった�
   single: テーブル; ordered_set
   single: テーブル; 順序付き
 
-7.1.6 ordered_setテーブル
--------------------------
+ordered_setテーブル
+-------------------
 
 .. If the data in the table should be accessed so that the order of the keys in the table is significant, the table type ordered_set could be used instead of the more usual set table type. An ordered_set is always traversed in Erlang term order with regard to the key field so that return values from functions such as select, match_object, and foldl are ordered by the key values. Traversing an ordered_set with the first and next operations also returns the keys ordered.
 
@@ -315,8 +315,8 @@ idnoをキーとして、以下のデータを含むEtsテーブルがあった�
 
 .. 7.2 Ets specific
 
-7.2 Etsの仕様
-=============
+Etsの仕様
+=========
 
 .. 7.2.1 Utilizing the keys of the Ets table
 
@@ -327,8 +327,8 @@ idnoをキーとして、以下のデータを含むEtsテーブルがあった�
   single: Etsテーブル; 単一キーテーブル
   module: ets
 
-7.2.1 Etsテーブルのキーの使用
------------------------------
+Etsテーブルのキーの使用
+-----------------------
 
 .. An Ets table is a single key table (either a hash table or a tree ordered by the key) and should be used as one. In other words, use the key to look up things whenever possible. A lookup by a known key in a set Ets table is constant and for a ordered_set Ets table it is O(logN). A key lookup is always preferable to a call where the whole table has to be scanned. In the examples above, the field idno is the key of the table and all lookups where only the name is known will result in a complete scan of the (possibly large) table for a matching result.
 
@@ -373,8 +373,8 @@ Etsテーブルは単一キーテーブルです。内部実装はハッシュ�
 .. index::
   module: mnesia
 
-7.3 Mnesiaの仕様
-=================
+Mnesiaの仕様
+============
 
 .. 7.3.1 Secondary index
 
@@ -384,8 +384,8 @@ Etsテーブルは単一キーテーブルです。内部実装はハッシュ�
   single: mnesiaモジュール; add_table_index/2
   single: mnesiaモジュール; dairy_index_read/3
 
-7.3.1 セカンダリーインデックス
-------------------------------
+セカンダリーインデックス
+------------------------
 
 .. If you frequently do a lookup on a field that is not the key of the table, you will lose performance using "mnesia:select/match_object" as this function will traverse the whole table. You may create a secondary index instead and use "mnesia:index_read" to get faster access, however this will require more memory. Example:
 
@@ -411,8 +411,8 @@ Etsテーブルは単一キーテーブルです。内部実装はハッシュ�
   single: mnesiaモジュール; transaction/1
   single: mnesiaモジュール; dirty_read/1
 
-7.3.2 トランザクション
-----------------------
+トランザクション
+----------------
 
 .. Transactions is a way to guarantee that the distributed Mnesia database remains consistent, even when many different processes update it in parallel. However if you have real time requirements it is recommended to use dirty operations instead of transactions. When using the dirty operations you lose the consistency guarantee, this is usually solved by only letting one process update the table. Other processes have to send update requests to that process.
 
@@ -439,4 +439,4 @@ Etsテーブルは単一キーテーブルです。内部実装はハッシュ�
 .. % Using transaction
 .. % Same thing using dirty operations
 
-Copyright © 1991-2009 Ericsson AB
+Copyright c 1991-2009 Ericsson AB

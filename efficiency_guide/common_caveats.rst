@@ -2,8 +2,8 @@
 
 .. 3 Common Caveats
 
-3 警戒すべきモジュールと組み込み関数
-====================================
+警戒すべきモジュールと組み込み関数
+==================================
 
 .. Here we list a few modules and BIFs to watch out for, and not
    only from a performance point of view.
@@ -16,8 +16,8 @@
   module: regexpモジュール
   module: reモジュール
 
-3.1 regexpモジュール
---------------------
+regexpモジュール
+----------------
 
 .. The regular expression functions in the regexp module are written
    in Erlang, not in C, and were meant for occasional use on small
@@ -40,8 +40,8 @@ regexpモジュールの中の正規表現関数はC言語ではなく、Erlang�
   single: timerモジュール; tc/3
   single: timerモジュール; sleep/1
 
-3.2 timerモジュール
--------------------
+timerモジュール
+---------------
 
 .. Creating timers using erlang:send_after/3 and erlang:start_timer/3 is
    much more efficient than using the timers provided by the timer module.
@@ -64,8 +64,8 @@ timer:tc/3, timer:sleep/1などといった、timerモジュールの中のタ�
   single: list_to_existing_atom/1
   pair: アトム; ガーベジコレクタ
 
-3.3 list_to_atom/1
-------------------
+list_to_atom/1
+--------------
 
 .. Atoms are not garbage-collected. Once an atom is created, it
 .. will never be removed. The emulator will terminate if the
@@ -102,8 +102,8 @@ timer:tc/3, timer:sleep/1などといった、timerモジュールの中のタ�
   single: リスト; 不適切なリスト
   single: リスト; 長さ取得
 
-3.4 length/1
-------------
+length/1
+--------
 
 .. The time for calculating the length of a list is proportional
 .. to the length of the list, as opposed to tuple_size/1, byte_size/1,
@@ -158,8 +158,8 @@ Lが不適切なリストの時に失敗するという点だけが、length(L)�
   builtin: setelement/1
   pair: タプル; 変更
 
-3.5 setelement/3
-----------------
+setelement/3
+------------
 
 .. setelement/3 copies the tuple it modifies. Therefore,
    updating a tuple in a loop using setelement/3 will create
@@ -219,8 +219,8 @@ setelement/3はタプルをコピーしてから変更します。そのため�
   builtin: byte_size/1
   builtin: Dialyzer
 
-3.6 size/1
-----------
+size/1
+------
 
 .. size/1 returns the size for both tuples and binary.
 
@@ -238,8 +238,8 @@ R12Bから導入された、新しい組み込み関数のtuple_size/1, byte_siz
   single: バイナリ; split_binary/2
   builtin: split_binary/2
 
-3.7 split_binary/2
-------------------
+split_binary/2
+--------------
 
 .. It is usually more efficient to split a binary using matching instead
    of calling the split_binary/2 function. Furthermore, mixing bit syntax
@@ -275,8 +275,8 @@ R12Bから導入された、新しい組み込み関数のtuple_size/1, byte_siz
   single: setsモジュール; from_list/1
   single: gb_setsモジュール; from_list/1
 
-3.8 '--'演算子
-------------------
+'--'演算子
+----------
 
 .. Note that the '--' operator has a complexity proportional to
    the product of the length of its operands, meaning that it
