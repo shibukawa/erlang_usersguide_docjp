@@ -44,7 +44,7 @@ Erlangアプリケーションの根幹を成す、OTPのフレームワーク�
    design_principles/sys_and_proc_lib
    design_principles/applications
    design_principles/included_applications
-   design_principles/distributed_applications
+   design_principles/distributed_application
    design_principles/release
    design_principles/release_handling
    design_principles/appup_cookbook
