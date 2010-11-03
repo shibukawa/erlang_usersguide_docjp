@@ -1,5 +1,7 @@
 .. 6 Sys and Proc_Lib
 
+.. _sys_and_proc_lib:
+
 =============
 sysとproc_lib
 =============

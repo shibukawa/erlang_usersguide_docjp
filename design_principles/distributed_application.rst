@@ -1,5 +1,3 @@
-[Ericsson AB]
-
 .. 9 Distributed Applications
 
 ====================
@@ -98,7 +96,7 @@
    down, myapp should be restarted at cp2@cave or cp3@cave. A system configuration 
    file cp1.config for cp1@cave could look like:
 
-例えば、 ``cp1@cave`` というノードで ``myapp`` アプリケーションを起動しなければならないとシます。もしこのノードがダウンした場合には、 ``myapp`` は ``cp2@cave`` か、 ``cp3@cave`` で再起動しなければなりません。 ``cp1@cave`` のための設定ファイル ``cp1.config` は次のようになります。
+例えば、 ``cp1@cave`` というノードで ``myapp`` アプリケーションを起動しなければならないとシます。もしこのノードがダウンした場合には、 ``myapp`` は ``cp2@cave`` か、 ``cp3@cave`` で再起動しなければなりません。 ``cp1@cave`` のための設定ファイル :file:`cp1.config` は次のようになります。
 
 .. code-block:: erlang
 
@@ -167,7 +165,11 @@
 
 すべてのノードが起動されると、 ``myapp`` がスタートします。すべての3つのノードで ``application:start(myapp)`` を呼ばれます。 ``cp1`` で起動した状態が、次の図の通りです。
 
-Application myapp - Situation 1
+.. image:: situation1.png
+
+アプリケーション ``myapp`` - 状態1
+
+.. Application myapp - Situation 1
 
 .. Similarly, the application must be stopped by calling application:stop(Application) 
    at all involved nodes.
@@ -215,18 +217,22 @@ Application myapp - Situation 1
 
 例: もし ``cp1`` がダウンすると、システムは他のノード(``cp2`` 、 ``cp3``)のうち、起動しているアプリケーション数がもっとも少ないノードを調べます。ただし、 ``cp1`` が再起動するまで5秒間待ちます。もし ``cp1`` が再起動せず、 ``cp2`` で起動しているアプリケーションが ``cp3`` よりも少ない場合、 ``myapp`` は ``cp2`` 上で起動します。
 
-dist2
+.. image:: situation2.png
 
-Application myapp - Situation 2
+.. Application myapp - Situation 2
+
+アプリケーション ``myapp`` - 状態2
 
 .. Suppose now that cp2 goes down as well and does not restart within 5 seconds. 
    myapp is now restarted on cp3.
 
 同じようにして ``cp2`` がダウンし、5秒間待っても再起動しなければ、 ``myapp`` は、 ``cp3`` 上で再起動します。
 
-dist3
+.. image:: situation3.png
 
-Application myapp - Situation 3
+.. Application myapp - Situation 3
+
+アプリケーション ``myapp`` - 状態3
 
 .. 9.5 Takeover
 
@@ -257,8 +263,11 @@ Application myapp - Situation 3
 
 例: もし ``myapp`` が ``cp3`` で起動している時に、 ``cp2`` が再起動したとすると、 ``myapp`` の再起動は行われません。 ``cp2`` と、 ``cp3`` の間の優先順位が未定義だからです。
 
-dist4
-Application myapp - Situation 4
+.. image:: situation4.png
+
+.. Application myapp - Situation 4
+
+アプリケーション ``myapp`` - 状態4
 
 .. However, if cp1 restarts as well, the function application:takeover/2 moves 
    myapp to cp1, because cp1 has a higher priority than cp3 for this application. 
@@ -267,6 +276,10 @@ Application myapp - Situation 4
 
 しかし、 ``cp1`` が再起動したとすると、このアプリケーションに関しては ``cp1`` の方が ``cp3`` よりも優先順位が高いため、 ``application:takeover/2`` 関数が ``myapp`` を ``cp1`` に移動します。この場合、アプリケーションを ``cp1`` で起動するために、 ``Module:start({takeover, cp3@cave}, StartArgs)`` が実行されます。
 
-dist5
-Application myapp - Situation 5
+.. image:: situation5.png
+
+.. Application myapp - Situation 5
+
+アプリケーション ``myapp`` - 状態5
+
 Copyright (c) 1991-2009 Ericsson AB
