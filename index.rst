@@ -6,6 +6,21 @@
 Erlangユーザーズガイド
 =================================================
 
+システム原則
+------------
+
+Erlangのシステムを作って、インストールして、稼働させるまでの流れが書かれています。
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+
+   system_principles/system_principles
+   system_principles/error_logging
+   system_principles/create_first_target_system
+   
+
+
 Erlang Efficiency ガイド
 ------------------------
 
